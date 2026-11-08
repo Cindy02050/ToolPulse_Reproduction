@@ -1,0 +1,16 @@
+diff --git a/src/swerex/deployment/docker.py b/src/swerex/deployment/docker.py
+index 283e2a0..3695aed 100644
+--- a/src/swerex/deployment/docker.py
++++ b/src/swerex/deployment/docker.py
+@@ -119,7 +119,10 @@ class DockerDeployment(AbstractDeployment):
+         if self._config.python_standalone_dir:
+             cmd = f"{self._config.python_standalone_dir}/python3.11/bin/{REMOTE_EXECUTABLE_NAME} {rex_args}"
+         else:
+-            cmd = f"{REMOTE_EXECUTABLE_NAME} {rex_args} || ({pipx_install} && pipx run {PACKAGE_NAME} {rex_args})"
++            cmd = (
++                f"{REMOTE_EXECUTABLE_NAME} {rex_args} || "
++                f"({pipx_install} && python3 -m pipx run {PACKAGE_NAME} {rex_args})"
++            )
+         # Need to wrap with /bin/sh -c to avoid having '&&' interpreted by the parent shell
+         return [
+             "/bin/sh",

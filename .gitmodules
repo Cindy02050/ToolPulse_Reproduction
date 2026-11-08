@@ -1,0 +1,6 @@
+[submodule "SWE-agent"]
+	path = SWE-agent
+	url = https://github.com/seal-research/SWE-agent.git
+[submodule "SWE-ReX"]
+	path = SWE-ReX
+	url = https://github.com/seal-research/SWE-ReX.git
